@@ -32,8 +32,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // En una aplicación real, aquí manejarías la migración de datos.
-        // Para esta práctica, simplemente eliminamos y recreamos la tabla.
+        // para la practica,  eliminamos y recreamos la tabla.
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_ESTUDIANTES")
         onCreate(db)
     }

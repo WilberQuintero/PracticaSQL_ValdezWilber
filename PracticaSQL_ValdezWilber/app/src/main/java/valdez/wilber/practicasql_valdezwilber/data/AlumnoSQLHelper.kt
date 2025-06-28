@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.Toast
 import valdez.wilber.practicasql_valdezwilber.Alumno
 
 class AlumnoSQLHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -48,6 +49,27 @@ class AlumnoSQLHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         }
         db.insert(TABLE_NAME, null, values)
         db.close()
+
+    }
+
+    fun getAllAlumnos(): List<Alumno> {
+        val alumnosList = mutableListOf<Alumno>()
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME"
+        val cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val nombre = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME))
+            val apPaterno = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_LASTNAME))
+            val apMaterno = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SECOND_LASTNAME))
+            val carrera = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EDU_PROGRAM))
+
+            val alumno = Alumno(nombre, apPaterno, apMaterno, carrera)
+            alumnosList.add(alumno)
+        }
+            cursor.close()
+            db.close()
+        return alumnosList
 
     }
 

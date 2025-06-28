@@ -95,4 +95,20 @@
         android:text="Guardar"
         android:textColor="@android:color/white" />
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/students"
+        android:textSize="24sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/studentsList"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+
+        />
+
+
 </LinearLayout>

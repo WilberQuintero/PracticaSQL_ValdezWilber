@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PracticaSQL_ValdezWilber</string>
+    <string name="students">Alumnos</string>
+
 </resources>

@@ -25,7 +25,7 @@ class AlumnoSQLHelper (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
             "$COLUMN_NAME TEXT," +
             "$COLUMN_FIRST_LASTNAME TEXT," +
             "$COLUMN_SECOND_LASTNAME TEXT," +
-            "$COLUMN_EDU_PROGRAM TEXT" +
+            "$COLUMN_EDU_PROGRAM TEXT"+
             ")"
         db?.execSQL(createTableAlumnos)
 

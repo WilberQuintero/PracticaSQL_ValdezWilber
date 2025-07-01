@@ -31,11 +31,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         db = AlumnoSQLHelper(this)
 
 
-//        // Inicializar vistas
+      // Inicializar vistas
         etNombre = findViewById(R.id.etNombre)
         etApellidoPaterno = findViewById(R.id.etApellidoPaterno)
         etApellidoMaterno = findViewById(R.id.etApellidoMaterno)
@@ -46,14 +45,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
 
-        fun loadAlumnosIntoRecyclerView() {
-            val alumnosList = db.getAllAlumnos()
-                alumnosAdapter = AlumnoAdapter(alumnosList)
-                recyclerView.adapter = alumnosAdapter
 
-        }
+        // IMPORTANTE: Inicializa el adaptador con una lista MUTABLE vacía y el contexto.
+        alumnosAdapter = AlumnoAdapter(mutableListOf(), this)
+        recyclerView.adapter = alumnosAdapter
 
-
+        loadAlumnosIntoRecyclerView()
 
    btnGuardar.setOnClickListener() {
         val nombre = etNombre.text.toString().trim()
@@ -72,5 +69,12 @@ class MainActivity : AppCompatActivity() {
 
              loadAlumnosIntoRecyclerView()
         }
+
+
+    }
+
+        fun loadAlumnosIntoRecyclerView() {
+            val alumnosList = db.getAllAlumnos()
+            alumnosAdapter.updateData(alumnosList)
     }
 }

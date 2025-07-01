@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AlumnoAdapter(private var alumnosList: List<Alumno>, context: Context): RecyclerView.Adapter<AlumnoAdapter.AlumnoViewHolder>() {
+
+
+class AlumnoAdapter(private var alumnosList: MutableList<Alumno>, private val context: Context):
+    RecyclerView.Adapter<AlumnoAdapter.AlumnoViewHolder>() {
 
     class AlumnoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
@@ -30,4 +33,10 @@ class AlumnoAdapter(private var alumnosList: List<Alumno>, context: Context): Re
         return alumnosList.size
     }
 
+
+    fun updateData(newAlumnos: List<Alumno>) {
+        this.alumnosList.clear() 
+        this.alumnosList.addAll(newAlumnos)
+        notifyDataSetChanged()
+    }
 }
